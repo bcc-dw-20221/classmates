@@ -35,4 +35,4 @@ jobs:
           cat .env
       - name: Run Tests
         run: |
-          shopt -s globstar && pylint **/*.py
+          shopt -s globstar && pylint magote meuauth aula1908
