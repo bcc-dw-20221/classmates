@@ -17,8 +17,8 @@ def sign_in(request):
         if user:
             login(request, user)
             return HttpResponse("O login ocorreu.")
-        else:
-            return HttpResponse("Você não sabe de nada.")
+
+        return HttpResponse("Você não sabe de nada.")
     return render(request, "meuauth/index.html")
 
 
