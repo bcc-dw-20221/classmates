@@ -22,9 +22,10 @@ def teste(request):
     """Faz nada."""
     return render(request, "magote/index.html")
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('myauth/', include('meuauth.urls')),
-    path('', teste, name='home'),
+    path("myauth/", include("meuauth.urls")),
+    path("1908/", include("aula1908.urls")),
+    path("", teste, name="home"),
 ]
-
