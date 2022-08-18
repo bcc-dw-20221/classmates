@@ -19,8 +19,7 @@ def sign_in(request):
             return HttpResponse("O login ocorreu.")
         else:
             return HttpResponse("Você não sabe de nada.")
-    else:
-        return render(request, "meuauth/index.html")
+    return render(request, "meuauth/index.html")
 
 
 def perfil(request: HttpRequest, corno_id: str) -> HttpResponse:
