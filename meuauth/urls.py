@@ -1,3 +1,4 @@
+"""Urls do meuauth."""
 from django.urls import path
 from meuauth import views
 

@@ -1,5 +1,6 @@
+"""Models do meuauth."""
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 tipo_corno = (
     ("manso", "Corno manso"),
@@ -8,5 +9,7 @@ tipo_corno = (
 
 # Create your models here.
 class CornoProfile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    """Dados extras do perfil de um corno."""
+
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     tipo = models.CharField(max_length=30, choices=tipo_corno, default="manso")

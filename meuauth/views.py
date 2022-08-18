@@ -1,12 +1,13 @@
+"""Views do módulo meuauth."""
 from django.shortcuts import HttpResponse, render
 from django.http import HttpRequest
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, get_user_model
 
 from .models import CornoProfile
 
 # Create your views here.
 def sign_in(request):
+    """Login de usuário."""
     if request.method == "POST":
         user = request.POST["user"]
         passwd = request.POST["passwd"]
@@ -28,6 +29,7 @@ def perfil(request: HttpRequest, corno_id: str) -> HttpResponse:
 
 
 def cadastro(request):
+    """Cadastro de usuário."""
     nome = request.GET["nome"]
     senha = request.GET["senha"]
     tipo = request.GET["tipo"]
@@ -35,7 +37,7 @@ def cadastro(request):
     novo_corno = CornoProfile()
     novo_corno.tipo = tipo
 
-    novo_usuario = User.objects.create_user(nome, "", senha)
+    novo_usuario = get_user_model().objects.create_user(nome, "", senha)
     novo_usuario.save()
 
     novo_corno.user = novo_usuario

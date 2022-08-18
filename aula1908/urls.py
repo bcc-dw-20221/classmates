@@ -1,3 +1,4 @@
+"""Urls da aula do dia 19/08."""
 from django.urls import path
 
 from aula1908 import views

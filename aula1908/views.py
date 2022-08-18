@@ -1,4 +1,4 @@
-from django.shortcuts import render
+"""Views da aula do dia 19/08."""
 from django.http import HttpResponse
 
 # Create your views here.
