@@ -25,14 +25,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Prepare the .env file
-        env: |
+        env:
           DEBUG: ${{ secrets.DEBUG }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
-          echo $DEBUG
-          echo "DEBUG=$DEBUG" > .env
-          echo SECRET_KEY
-          echo "SECRET_KEY=$SECRET_KEY" > .env
+          touch .env
+          echo "DEBUG=$DEBUG;" >> .env
+          echo "SECRET_KEY=$SECRET_KEY;" >> .env
+          cat .env
       - name: Run Tests
         run: |
           python manage.py test
