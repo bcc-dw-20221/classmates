@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "meuauth.apps.AuthConfig",
-    "aula1908.apps.Aula1908Config",
+    "bar.apps.BarConfig",
     "magote",
 ]
 
