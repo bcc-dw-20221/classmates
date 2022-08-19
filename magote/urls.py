@@ -25,7 +25,5 @@ def teste(request):
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("myauth/", include("meuauth.urls")),
-    path("1908/", include("aula1908.urls")),
     path("", teste, name="home"),
 ]
