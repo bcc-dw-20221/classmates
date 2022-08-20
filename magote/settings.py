@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "bar.apps.BarConfig",
+    "boteco.apps.BotecoConfig",
     "magote",
 ]
 
