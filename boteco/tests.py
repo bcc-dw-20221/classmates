@@ -37,15 +37,17 @@ class PostagensTestCase(TestCase):
 
         resp_dict = json.loads(response.content)
 
-        self.assertTrue("postagens" in resp_dict)
-        self.assertGreaterEqual(len(resp_dict["postagens"]), 1)
+        self.assertGreaterEqual(len(resp_dict), 1)
 
     def tests_get_postagem_especifica(self):
         response = self.client.get("/boteco/get/1/")
 
         resp_dict = json.loads(response.content)
 
-        self.assertTrue("postagem" in resp_dict)
+        self.assertTrue(
+            resp_dict[0]["fields"]["texto"]
+            == "Hoje é o dia do corno, foi bom te encontrar."
+        )
 
     def tests_delete_item(self):
         response_delete = self.client.get("/boteco/remove/1/")
