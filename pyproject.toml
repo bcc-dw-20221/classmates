@@ -6,7 +6,7 @@ authors = ["Felipe Bastos <felipebastos@ifce.edu.br>"]
 license = "GPL-3.0"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 Django = "^4.1"
 python-dotenv = "^0.20.0"
 requests = "^2.28.1"

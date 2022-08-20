@@ -35,4 +35,4 @@ jobs:
           cat .env
       - name: Run Tests
         run: |
-          shopt -s globstar && pylint --recursive=y . --fail-under=8
+          pylint .

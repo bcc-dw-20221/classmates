@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from bar.models import Postagem
+from boteco.models import Postagem
 
 import json
 
@@ -13,13 +13,13 @@ class PostagensTestCase(TestCase):
         )
 
     def tests_postagem_retorna_403_para_http_nao_post(self):
-        response = self.client.get("/bar/add/")
+        response = self.client.get("/boteco/add/")
 
         self.assertEqual(response.status_code, 403)
 
     def tests_postagem_retorna_200_para_post(self):
         response = self.client.post(
-            "/bar/add/",
+            "/boteco/add/",
             data={
                 "texto": "O homem sem chifre é um animal indefeso.",
             },
@@ -32,7 +32,7 @@ class PostagensTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def tests_endpoint_todas_as_postagens(self):
-        response = self.client.get("/bar/")
+        response = self.client.get("/boteco/")
 
         resp_dict = json.loads(response.content)
 
@@ -40,13 +40,13 @@ class PostagensTestCase(TestCase):
         self.assertGreaterEqual(len(resp_dict["postagens"]), 1)
 
     def tests_get_postagem_especifica(self):
-        response = self.client.get("/bar/get/1/")
+        response = self.client.get("/boteco/get/1/")
 
         resp_dict = json.loads(response.content)
 
         self.assertTrue("postagem" in resp_dict)
 
     def tests_delete_item(self):
-        response_delete = self.client.get("/bar/remove/1/")
+        response_delete = self.client.get("/boteco/remove/1/")
 
         self.assertEqual(response_delete.status_code, 200)

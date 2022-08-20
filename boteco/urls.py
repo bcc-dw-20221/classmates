@@ -1,7 +1,7 @@
 """URL paths do bar."""
 from django.urls import path
 
-from bar import views
+from boteco import views
 
 urlpatterns = [
     path("", views.get_postagens, name="get_postagens"),
