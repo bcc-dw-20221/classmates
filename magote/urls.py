@@ -25,6 +25,6 @@ def teste(request):
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("bar/", include("bar.urls")),
+    path("boteco/", include("boteco.urls")),
     path("", teste, name="home"),
 ]

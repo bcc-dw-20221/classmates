@@ -5,13 +5,13 @@ from boteco.models import Postagem
 # Create your tests here.
 class PostagensTestCase(TestCase):
     def tests_postagem_retorna_403_para_http_nao_post(self):
-        response = self.client.get("/bar/add/")
+        response = self.client.get("/boteco/add/")
 
         self.assertEqual(response.status_code, 403)
 
     def tests_postagem_retorna_200_para_post(self):
         response = self.client.post(
-            "/bar/add/",
+            "/boteco/add/",
             data={
                 "texto": "O homem sem chifre é um animal indefeso.",
             },
