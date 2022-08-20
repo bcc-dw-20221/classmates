@@ -1,8 +1,9 @@
+import json
+
 from django.test import TestCase
 
 from boteco.models import Postagem
 
-import json
 
 # Create your tests here.
 class PostagensTestCase(TestCase):
