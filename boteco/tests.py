@@ -13,10 +13,10 @@ class PostagensTestCase(TestCase):
             texto="Manda esse homem embora, mete o pé na bunda dele."
         )
 
-    def tests_postagem_retorna_403_para_http_nao_post(self):
+    def tests_postagem_retorna_405_para_http_nao_post(self):
         response = self.client.get("/boteco/add/")
 
-        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, 405)
 
     def tests_postagem_retorna_200_para_post(self):
         response = self.client.post(
@@ -50,6 +50,6 @@ class PostagensTestCase(TestCase):
         )
 
     def tests_delete_item(self):
-        response_delete = self.client.get("/boteco/remove/1/")
+        response_delete = self.client.delete("/boteco/remove/1/")
 
         self.assertEqual(response_delete.status_code, 200)
