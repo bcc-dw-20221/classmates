@@ -32,7 +32,7 @@ jobs:
           touch .env
           echo "DEBUG=$DEBUG;" >> .env
           echo "SECRET_KEY=$SECRET_KEY;" >> .env
-          ls
+          ls -a
       - name: Run linter
         run: |
           pylint .
