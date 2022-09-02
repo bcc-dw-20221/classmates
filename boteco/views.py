@@ -4,6 +4,8 @@
 from django.shortcuts import HttpResponse
 from django.core import serializers
 
+from django.contrib.auth import get_user_model
+
 from django.views.decorators.http import require_http_methods
 
 from boteco.models import Postagem
@@ -34,6 +36,7 @@ def post_postagem(request):
     """Adiciona um post."""
     nova = Postagem()
     nova.texto = request.POST["texto"]
+    nova.autor = get_user_model().objects.get(pk=request.POST["autor_id"])
     nova.save()
     return HttpResponse("Postagem bem sucedida")
 

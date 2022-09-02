@@ -2,15 +2,23 @@ import json
 
 from django.test import TestCase
 
+from django.contrib.auth import get_user_model
+
 from boteco.models import Postagem
 
 
 # Create your tests here.
 class PostagensTestCase(TestCase):
     def setUp(self):
-        Postagem.objects.create(texto="Hoje é o dia do corno, foi bom te encontrar.")
+        user = get_user_model().objects.create(
+            username="zezo", email="zezo@dosteclados.com", password="123456"
+        )
+
         Postagem.objects.create(
-            texto="Manda esse homem embora, mete o pé na bunda dele."
+            texto="Hoje é o dia do corno, foi bom te encontrar.", autor=user
+        )
+        Postagem.objects.create(
+            texto="Manda esse homem embora, mete o pé na bunda dele.", autor=user
         )
 
     def tests_postagem_retorna_405_para_http_nao_post(self):
@@ -22,6 +30,7 @@ class PostagensTestCase(TestCase):
         response = self.client.post(
             "/boteco/add/",
             data={
+                "autor_id": "1",
                 "texto": "O homem sem chifre é um animal indefeso.",
             },
         )

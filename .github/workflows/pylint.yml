@@ -32,7 +32,7 @@ jobs:
           touch .env
           echo "DEBUG=$DEBUG;" >> .env
           echo "SECRET_KEY=$SECRET_KEY;" >> .env
-          cat .env
-      - name: Run Tests
+          ls -a
+      - name: Run linter
         run: |
-          pylint .
+          shopt -s globstar && pylint --load-plugins pylint_django --django-settings-module=magote.settings **/*.py
