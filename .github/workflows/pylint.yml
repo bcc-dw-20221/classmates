@@ -33,6 +33,6 @@ jobs:
           echo "DEBUG=$DEBUG;" >> .env
           echo "SECRET_KEY=$SECRET_KEY;" >> .env
           cat .env
-      - name: Run Tests
+      - name: Run linter
         run: |
           pylint .
