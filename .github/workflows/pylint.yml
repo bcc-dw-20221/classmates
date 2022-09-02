@@ -33,6 +33,7 @@ jobs:
           echo "DEBUG=$DEBUG;" >> .env
           echo "SECRET_KEY=$SECRET_KEY;" >> .env
           cat .env
+          ls
       - name: Run linter
         run: |
-          pylint .
+          DJANGO_SETTINGS_MODULE=magote.settings pylint .
