@@ -35,4 +35,4 @@ jobs:
           ls -a
       - name: Run linter
         run: |
-          pylint --django-settings-module=magote.settings --load-plugins=pylint_django .
+          shopt -s globstar && pylint --load-plugins pylint_django --django-settings-module=magote.settings **/*.py
