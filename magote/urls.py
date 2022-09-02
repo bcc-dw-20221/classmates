@@ -31,7 +31,3 @@ urlpatterns = [
     path("boteco/", include("boteco.urls")),
     path("", teste, name="home"),
 ]
-
-settings.configure()
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
