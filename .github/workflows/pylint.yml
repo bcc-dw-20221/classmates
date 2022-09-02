@@ -33,7 +33,6 @@ jobs:
           echo "DEBUG=$DEBUG;" >> .env
           echo "SECRET_KEY=$SECRET_KEY;" >> .env
           ls -a
-          cat .pylintrc
       - name: Run linter
         run: |
-          pylint .
+          pylint --django-settings-module=magote.settings --load-plugins=pylint_django .
