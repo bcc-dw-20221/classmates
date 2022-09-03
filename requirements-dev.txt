@@ -21,7 +21,7 @@ backports.zoneinfo==0.2.1; python_version < "3.9" and python_version >= "3.8" \
     --hash=sha256:4a0f800587060bf8880f954dbef70de6c11bbe59c673c3d818921f042f9954a6 \
     --hash=sha256:fadbfe37f74051d024037f223b8e001611eac868b5c5b06144ef4d8b799862f2
 black==22.8.0; python_full_version >= "3.6.2" \
-    --hash=sha256:d839150f61d09e7217f52917259831fe2b689f5c8e5e32611736351b89bb2a90
+    --hash=sha256:53198e28a1fb865e9fe97f88220da2e44df6da82b18833b588b1883b16bb5d41
 certifi==2022.6.15; python_version >= "3.7" and python_version < "4" \
     --hash=sha256:fe86415d55e84719d75f8b69414f6438ac3547d2078ab91b67e779ef69378412 \
     --hash=sha256:84c85a9078b11105f04f3036a9482ae10e4621616db313fe045dd24743a0820d
