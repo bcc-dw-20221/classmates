@@ -8,10 +8,15 @@ from django.contrib.auth import get_user_model
 class Postagem(models.Model):
     """Post de um corno no blog."""
 
-    autor = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default=None, related_name="postagens")
+    autor = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        default=None,
+        related_name="postagens",
+    )
 
     texto = models.CharField(max_length=140)
-    
+
     timestamp = models.DateTimeField(default=timezone.now)
 
     curtidas = models.ManyToManyField(
@@ -23,9 +28,13 @@ class Postagem(models.Model):
 
 
 class Comentario(models.Model):
-    autor = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)  # Many to one
+    autor = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE
+    )  # Many to one
 
-    postagem = models.ForeignKey(Postagem, on_delete=models.CASCADE, default=None)
+    postagem = models.ForeignKey(
+        Postagem, on_delete=models.CASCADE, default=None
+    )
 
     texto = models.CharField(max_length=140)
     timestamp = models.DateTimeField(default=timezone.now)
@@ -52,7 +61,9 @@ class Magote(models.Model):
         on_delete=models.CASCADE,
         related_name="magote_lider",
     )
-    membros = models.ManyToManyField(get_user_model(), related_name="magote_membros")
+    membros = models.ManyToManyField(
+        get_user_model(), related_name="magote_membros"
+    )
 
     def __str__(self) -> str:
         return f"Magote liderado por {self.lider.username}"  # pylint: disable=E1101
@@ -81,15 +92,21 @@ class Perfil(models.Model):
     )
 
     foto_perfil = models.ImageField(
-        "Foto de perfil", blank=True, upload_to=user_directory_path,
-        default="user_default/profile.jpg"
+        "Foto de perfil",
+        blank=True,
+        upload_to=user_directory_path,
+        default="user_default/profile.jpg",
     )
 
     qtd_chifres = models.IntegerField(default=1)
-    status = models.ForeignKey(TipoDeCorno, null=True, on_delete=models.SET_DEFAULT, default=None)
+    status = models.ForeignKey(
+        TipoDeCorno, null=True, on_delete=models.SET_DEFAULT, default=None
+    )
     ultimo_chifre = models.DateTimeField(default=timezone.now)
 
-    bebida_preferida = models.ForeignKey(Bebida, null=True, on_delete=models.SET_NULL)
+    bebida_preferida = models.ForeignKey(
+        Bebida, null=True, on_delete=models.SET_NULL
+    )
 
     procurando_mais = models.BooleanField(
         verbose_name="Procurando mais chifres", default=True
