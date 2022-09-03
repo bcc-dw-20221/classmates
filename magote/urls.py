@@ -20,7 +20,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-
 def teste(request):
     """Faz nada."""
     return render(request, "magote/index.html")
