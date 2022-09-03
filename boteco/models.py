@@ -8,9 +8,10 @@ from django.contrib.auth import get_user_model
 class Postagem(models.Model):
     """Post de um corno no blog."""
 
-    autor = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default=None)
+    autor = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default=None, related_name="postagens")
 
     texto = models.CharField(max_length=140)
+    
     timestamp = models.DateTimeField(default=timezone.now)
 
     curtidas = models.ManyToManyField(
@@ -37,14 +38,11 @@ class Comentario(models.Model):
         return f"Comentário de {self.autor}"
 
 
-STATUS_CORNO = (
-    ("cm", "Corno Manso"),
-    ("cc", "Corno Cururu"),
-    ("ca", "Corno Abelha"),
-    ("cp", "Corno Prestativo"),
-    ("bg", "Buscando a galha"),
-    ("ci", "Corno Indeciso"),
-)
+class TipoDeCorno(models.Model):
+    nome = models.CharField(max_length=20, blank=False, unique=True)
+
+    def __str__(self) -> str:
+        return self.nome
 
 
 class Magote(models.Model):
@@ -83,11 +81,12 @@ class Perfil(models.Model):
     )
 
     foto_perfil = models.ImageField(
-        "Foto de perfil", blank=True, upload_to=user_directory_path
+        "Foto de perfil", blank=True, upload_to=user_directory_path,
+        default="user_default/profile.jpg"
     )
 
     qtd_chifres = models.IntegerField(default=1)
-    status = models.CharField(max_length=2, choices=STATUS_CORNO, default="ci")
+    status = models.ForeignKey(TipoDeCorno, null=True, on_delete=models.SET_DEFAULT, default=None)
     ultimo_chifre = models.DateTimeField(default=timezone.now)
 
     bebida_preferida = models.ForeignKey(Bebida, null=True, on_delete=models.SET_NULL)

@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 
 def teste(request):
@@ -27,4 +30,4 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("boteco/", include("boteco.urls")),
     path("", teste, name="home"),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

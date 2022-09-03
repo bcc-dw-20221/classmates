@@ -13,7 +13,7 @@ class PerfilAdmin(admin.ModelAdmin):
         "ultimo_chifre",
         "procurando_mais",
     ]
-    search_fields = ["user"]
+    search_fields = ["user__username"]
     list_filter = ["status", "procurando_mais"]
     ordering = ["user"]
 
