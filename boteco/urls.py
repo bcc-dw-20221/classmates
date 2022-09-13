@@ -3,10 +3,18 @@ from django.urls import path, include
 from rest_framework import routers
 
 from boteco import views
-from boteco.viewsets import UserViewSet
+from boteco.viewsets import (
+    PerfilViewSet,
+    UserViewSet,
+    BebidaViewSet,
+    TipoDeCornoViewSet,
+)
 
 router = routers.DefaultRouter()
 router.register(r"users", UserViewSet)
+router.register(r"perfis", PerfilViewSet)
+router.register(r"bebidas", BebidaViewSet)
+router.register(r"tipos", TipoDeCornoViewSet)
 
 urlpatterns = [
     path("", views.get_postagens, name="get_postagens"),
