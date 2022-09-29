@@ -38,9 +38,7 @@ class CreateUserSerializer(serializers.HyperlinkedModelSerializer):
         extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):
-        validated_data["password"] = make_password(
-            validated_data.get("password")
-        )
+        validated_data["password"] = make_password(validated_data.get("password"))
         return super(CreateUserSerializer, self).create(validated_data)
 
 
@@ -81,15 +79,13 @@ class PerfilSerializer(serializers.HyperlinkedModelSerializer):
                 user=user,
                 foto_perfil=validated_data.pop("foto_perfil"),
                 qtd_chifres=validated_data.pop("qtd_chifres"),
-                status=validated_data.pop("status"),
+                status=validated_data.pop("status", None),
                 ultimo_chifre=validated_data.pop("ultimo_chifre"),
-                bebida_preferida=validated_data.pop("bebida_preferida"),
+                bebida_preferida=validated_data.pop("bebida_preferida", None),
                 procurando_mais=validated_data.pop("procurando_mais"),
             )
             if created:
                 return perfil
         else:
             user.delete()
-        return Response(
-            {"message": "Não pude criar um novo perfil."}, status=406
-        )
+        return Response({"message": "Não pude criar um novo perfil."}, status=406)
