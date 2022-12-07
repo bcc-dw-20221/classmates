@@ -1,10 +1,12 @@
 import json
+import random
+import os
 from faker import Faker
 from faker.providers import date_time, person, internet, misc
 
 import requests as r
 
-Faker.seed(0)
+Faker.seed(random.seed())
 fake = Faker("pt-BR")
 fake.add_provider(date_time)
 fake.add_provider(person)
@@ -41,7 +43,11 @@ print(resp.content.decode("utf-8"))
 # Vamos inserir um novo item no endpoint
 # Atenção: nas libs do JS e TS a gente usa o formato JSON normal.
 #          Aqui no requests, precisei adaptar pro padrão user.atributo.
-with open("chifre.jpg", "rb") as profile_pic:
+foto = fake.image(size=(160, 160), hue=[90, 270], image_format='png')
+with open('chifre.png', "wb") as profile_pic:
+    profile_pic.write(foto)
+
+with open('chifre.png', "rb") as profile_pic:
     files = {
         "foto_perfil": profile_pic,
     }
@@ -53,7 +59,7 @@ with open("chifre.jpg", "rb") as profile_pic:
         "user.email": fake.ascii_email(),
         "user.first_name": fake.first_name(),
         "user.last_name": fake.last_name(),
-        "foto_perfil": "chifre.jpg",
+        "foto_perfil": "chifre.png",
         "qtd_chifres": 0,
         "ultimo_chifre": fake.date_time(),
         "procurando_mais": fake.boolean(),
@@ -69,3 +75,5 @@ with open("chifre.jpg", "rb") as profile_pic:
     )
 
     print(resp.content.decode("utf-8"))
+
+os.remove("chifre.png")
