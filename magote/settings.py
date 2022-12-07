@@ -30,6 +30,7 @@ DEBUG = os.getenv("DEBUG", None)
 
 if DEBUG:
     ALLOWED_HOSTS = []
+    CORS_ALLOW_ALL_ORIGINS = True # CORS liberado em modo debug para rodar o front em outro processo
 else:
     ALLOWED_HOSTS = ["www.magote.com.br"]
 
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     "magote",
     "rest_framework",
     "rest_framework_simplejwt",
+    "corsheaders",
 ]
 
 REST_FRAMEWORK = {
@@ -63,6 +65,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",

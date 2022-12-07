@@ -15,7 +15,9 @@ fake.add_provider(misc)
 BASE_URL = "http://localhost:8000"
 
 # Vamos solicitar nosso par de tokens
-resp = r.post(f"{BASE_URL}/api/token/", {"username": "felipe", "password": "123456"})
+resp = r.post(
+    f"{BASE_URL}/api/token/", {"username": "felipe", "password": "1234"}
+)
 
 print(resp.content.decode("utf-8"))
 
